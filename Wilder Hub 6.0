@@ -1,0 +1,558 @@
+-- WIDER HUB v6.0 DELTA | 13/04/2026
+-- Easter + Fishing + Anti-Deteccao + God Mode Corrigido
+local LP=game:GetService("Players").LocalPlayer
+local RS=game:GetService("RunService")
+local UIS=game:GetService("UserInputService")
+local TS=game:GetService("TweenService")
+local LT=game:GetService("Lighting")
+local KEY="mica_@545647784...Fk"
+local DISC="discord.gg/bJjbpmJ4r"
+local BG=Color3.fromRGB(18,18,28) local SB=Color3.fromRGB(24,24,36)
+local CT=Color3.fromRGB(20,20,32) local HD=Color3.fromRGB(12,12,22)
+local RX=Color3.fromRGB(100,0,160) local RXE=Color3.fromRGB(60,0,100)
+local AZ=Color3.fromRGB(30,60,200) local AZC=Color3.fromRGB(60,100,230)
+local DT=Color3.fromRGB(150,60,255) local VD=Color3.fromRGB(70,230,100)
+local VM=Color3.fromRGB(220,50,50) local AM=Color3.fromRGB(255,200,40)
+local TX=Color3.fromRGB(200,180,240) local TXS=Color3.fromRGB(120,110,150)
+local BR=Color3.new(1,1,1) local SEL=Color3.fromRGB(35,15,55)
+local DIV=Color3.fromRGB(40,30,60)
+pcall(function() game:GetService("CoreGui").WiderHub:Destroy() end)
+pcall(function() LP.PlayerGui.WiderHub:Destroy() end)
+local SG=Instance.new("ScreenGui") SG.Name="WiderHub" SG.ResetOnSpawn=false
+SG.IgnoreGuiInset=true SG.DisplayOrder=999
+pcall(function() SG.Parent=game:GetService("CoreGui") end)
+if not SG.Parent then SG.Parent=LP.PlayerGui end
+local function C(f,r) Instance.new("UICorner",f).CornerRadius=UDim.new(0,r or 6) end
+local function G(f,c1,c2) local g=Instance.new("UIGradient",f) g.Color=ColorSequence.new({ColorSequenceKeypoint.new(0,c1),ColorSequenceKeypoint.new(1,c2)}) end
+local function getC() return LP.Character end
+local function getH() local c=getC() return c and c:FindFirstChild("HumanoidRootPart") end
+local function getHm() local c=getC() return c and c:FindFirstChildOfClass("Humanoid") end
+local function gPos(o) if not o then return nil end if o:IsA("Model") and o.PrimaryPart then return o.PrimaryPart.Position elseif o:IsA("BasePart") then return o.Position end end
+local function tp(pos) local h=getH() if h and pos then h.CFrame=CFrame.new(pos+Vector3.new(0,4,0)) end end
+local function find(kws) for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() for _,k in pairs(kws) do if n:find(k) then return o end end end end
+local function act(o) if not o then return end pcall(function() local pp=o:FindFirstChildOfClass("ProximityPrompt") or (o.Parent and o.Parent:FindFirstChildOfClass("ProximityPrompt")) if pp then fireproximityprompt(pp) end end) pcall(function() if o:IsA("BasePart") then local cd=o:FindFirstChildOfClass("ClickDetector") if cd then fireclickdetector(cd) end end end) end
+local loops={} local function sl(n) if loops[n] then loops[n]:Disconnect() loops[n]=nil end end
+local estados={} local setStat
+
+-- KEY
+local KBG=Instance.new("Frame",SG) KBG.Size=UDim2.new(1,0,1,0) KBG.BackgroundColor3=Color3.fromRGB(8,8,16) KBG.BorderSizePixel=0 KBG.ZIndex=50
+local KP=Instance.new("Frame",KBG) KP.Size=UDim2.new(0,280,0,290) KP.Position=UDim2.new(0.5,-140,0.5,-145) KP.BackgroundColor3=SB KP.BorderSizePixel=0 KP.ZIndex=51 C(KP,12)
+local ks=Instance.new("UIStroke",KP) ks.Color=DT ks.Thickness=2
+local kTop=Instance.new("Frame",KP) kTop.Size=UDim2.new(1,0,0,55) kTop.BackgroundColor3=RX kTop.BorderSizePixel=0 kTop.ZIndex=52 C(kTop,12) G(kTop,RX,AZ)
+local kFix=Instance.new("Frame",KP) kFix.Size=UDim2.new(1,0,0,12) kFix.Position=UDim2.new(0,0,0,46) kFix.BackgroundColor3=RX kFix.BorderSizePixel=0 kFix.ZIndex=52
+local kT1=Instance.new("TextLabel",kTop) kT1.Size=UDim2.new(1,0,0,30) kT1.Position=UDim2.new(0,0,0,8) kT1.BackgroundTransparency=1 kT1.Text="Wider Hub" kT1.TextColor3=BR kT1.TextSize=20 kT1.Font=Enum.Font.GothamBold kT1.ZIndex=53
+local kT2=Instance.new("TextLabel",kTop) kT2.Size=UDim2.new(1,0,0,16) kT2.Position=UDim2.new(0,0,0,36) kT2.BackgroundTransparency=1 kT2.Text="v6.0 | Easter+Fishing 2026" kT2.TextColor3=TX kT2.TextSize=10 kT2.Font=Enum.Font.Gotham kT2.ZIndex=53
+local kInfo=Instance.new("TextLabel",KP) kInfo.Size=UDim2.new(1,-20,0,22) kInfo.Position=UDim2.new(0,10,0,64) kInfo.BackgroundTransparency=1 kInfo.Text="Insira sua Key para acessar" kInfo.TextColor3=TX kInfo.TextSize=11 kInfo.Font=Enum.Font.Gotham kInfo.ZIndex=52
+local kBox=Instance.new("TextBox",KP) kBox.Size=UDim2.new(1,-20,0,34) kBox.Position=UDim2.new(0,10,0,90) kBox.BackgroundColor3=Color3.fromRGB(12,12,24) kBox.Text="" kBox.PlaceholderText="Cole sua key..." kBox.TextColor3=BR kBox.PlaceholderColor3=TXS kBox.TextSize=12 kBox.Font=Enum.Font.Gotham kBox.BorderSizePixel=0 kBox.ClearTextOnFocus=false kBox.ZIndex=53 C(kBox,6)
+local kBS=Instance.new("UIStroke",kBox) kBS.Color=RXE kBS.Thickness=1.5
+kBox:GetPropertyChangedSignal("Text"):Connect(function() kBS.Color=#kBox.Text>0 and DT or RXE end)
+local kConf=Instance.new("TextButton",KP) kConf.Size=UDim2.new(1,-20,0,34) kConf.Position=UDim2.new(0,10,0,130) kConf.BackgroundColor3=RX kConf.Text="Confirmar Key" kConf.TextColor3=BR kConf.TextSize=13 kConf.Font=Enum.Font.GothamBold kConf.BorderSizePixel=0 kConf.ZIndex=53 C(kConf,6) G(kConf,AZC,RX)
+local kDisc=Instance.new("TextButton",KP) kDisc.Size=UDim2.new(1,-20,0,28) kDisc.Position=UDim2.new(0,10,0,170) kDisc.BackgroundColor3=Color3.fromRGB(60,70,200) kDisc.Text="Copiar Discord" kDisc.TextColor3=BR kDisc.TextSize=12 kDisc.Font=Enum.Font.GothamBold kDisc.BorderSizePixel=0 kDisc.ZIndex=53 C(kDisc,6)
+local kMsg=Instance.new("TextLabel",KP) kMsg.Size=UDim2.new(1,-20,0,26) kMsg.Position=UDim2.new(0,10,0,204) kMsg.BackgroundTransparency=1 kMsg.Text="" kMsg.TextColor3=VM kMsg.TextSize=11 kMsg.Font=Enum.Font.GothamBold kMsg.TextWrapped=true kMsg.ZIndex=52
+local kDI=Instance.new("TextLabel",KP) kDI.Size=UDim2.new(1,0,0,14) kDI.Position=UDim2.new(0,0,0,252) kDI.BackgroundTransparency=1 kDI.Text=DISC kDI.TextColor3=TXS kDI.TextSize=10 kDI.Font=Enum.Font.Gotham kDI.ZIndex=52
+kDisc.MouseButton1Click:Connect(function() pcall(function() setclipboard("https://"..DISC) end) kDisc.Text="Copiado!" task.delay(2,function() kDisc.Text="Copiar Discord" end) end)
+
+-- FAB
+local FAB=Instance.new("Frame",SG) FAB.Size=UDim2.new(0,54,0,54) FAB.Position=UDim2.new(0,14,0.5,-27) FAB.BackgroundTransparency=1 FAB.ZIndex=20 FAB.Visible=false
+local FBTN=Instance.new("TextButton",FAB) FBTN.Size=UDim2.new(1,0,1,0) FBTN.BackgroundColor3=RX FBTN.Text="W" FBTN.TextSize=20 FBTN.Font=Enum.Font.GothamBold FBTN.TextColor3=BR FBTN.BorderSizePixel=0 FBTN.ZIndex=21 C(FBTN,27)
+local fStr=Instance.new("UIStroke",FBTN) fStr.Color=DT fStr.Thickness=2.5 G(FBTN,RX,AZ)
+local fd,fds,fsp,fm=false,nil,nil,false
+FBTN.InputBegan:Connect(function(i) if i.UserInputType==Enum.UserInputType.Touch or i.UserInputType==Enum.UserInputType.MouseButton1 then fd=true fm=false fds=i.Position fsp=FAB.Position end end)
+FBTN.InputEnded:Connect(function(i) if i.UserInputType==Enum.UserInputType.Touch or i.UserInputType==Enum.UserInputType.MouseButton1 then fd=false end end)
+UIS.InputChanged:Connect(function(i) if fd and (i.UserInputType==Enum.UserInputType.MouseMovement or i.UserInputType==Enum.UserInputType.Touch) then local d=i.Position-fds if d.Magnitude>5 then fm=true end FAB.Position=UDim2.new(fsp.X.Scale,fsp.X.Offset+d.X,fsp.Y.Scale,fsp.Y.Offset+d.Y) end end)
+
+-- MENU
+local mOpen=false
+local Menu=Instance.new("Frame",SG) Menu.Size=UDim2.new(0,420,0,420) Menu.Position=UDim2.new(0.5,-210,0.5,-210) Menu.BackgroundColor3=BG Menu.BorderSizePixel=0 Menu.ClipsDescendants=true Menu.Visible=false Menu.ZIndex=10 C(Menu,10)
+Instance.new("UIStroke",Menu).Color=DT
+local mTop=Instance.new("Frame",Menu) mTop.Size=UDim2.new(1,0,0,38) mTop.BackgroundColor3=HD mTop.BorderSizePixel=0 mTop.ZIndex=11 C(mTop,10)
+Instance.new("Frame",Menu).Size=UDim2.new(1,0,0,10) do local f=Menu:FindFirstChildOfClass("Frame") end
+local mFix=Instance.new("Frame",Menu) mFix.Size=UDim2.new(1,0,0,10) mFix.Position=UDim2.new(0,0,0,30) mFix.BackgroundColor3=HD mFix.BorderSizePixel=0 mFix.ZIndex=11
+G(mTop,RXE,HD)
+local mTit=Instance.new("TextLabel",mTop) mTit.Size=UDim2.new(1,-80,1,0) mTit.Position=UDim2.new(0,12,0,0) mTit.BackgroundTransparency=1 mTit.Text="Wider Hub v6 | Easter+Fishing" mTit.TextColor3=BR mTit.TextSize=12 mTit.Font=Enum.Font.GothamBold mTit.TextXAlignment=Enum.TextXAlignment.Left mTit.ZIndex=12
+local mMin=Instance.new("TextButton",mTop) mMin.Size=UDim2.new(0,26,0,20) mMin.Position=UDim2.new(1,-60,0.5,-10) mMin.BackgroundColor3=Color3.fromRGB(40,40,80) mMin.Text="-" mMin.TextColor3=BR mMin.TextSize=14 mMin.Font=Enum.Font.GothamBold mMin.BorderSizePixel=0 mMin.ZIndex=12 C(mMin,5)
+local mCls=Instance.new("TextButton",mTop) mCls.Size=UDim2.new(0,26,0,20) mCls.Position=UDim2.new(1,-30,0.5,-10) mCls.BackgroundColor3=Color3.fromRGB(150,20,50) mCls.Text="X" mCls.TextColor3=BR mCls.TextSize=12 mCls.Font=Enum.Font.GothamBold mCls.BorderSizePixel=0 mCls.ZIndex=12 C(mCls,5)
+local mini=false
+mMin.MouseButton1Click:Connect(function() mini=not mini Menu.Size=mini and UDim2.new(0,420,0,38) or UDim2.new(0,420,0,420) end)
+mCls.MouseButton1Click:Connect(function() mOpen=false Menu.Visible=false end)
+local md,mds,msp=false,nil,nil
+mTop.InputBegan:Connect(function(i) if i.UserInputType==Enum.UserInputType.Touch or i.UserInputType==Enum.UserInputType.MouseButton1 then md=true mds=i.Position msp=Menu.Position end end)
+mTop.InputEnded:Connect(function(i) if i.UserInputType==Enum.UserInputType.Touch or i.UserInputType==Enum.UserInputType.MouseButton1 then md=false end end)
+UIS.InputChanged:Connect(function(i) if md and (i.UserInputType==Enum.UserInputType.MouseMovement or i.UserInputType==Enum.UserInputType.Touch) then local d=i.Position-mds Menu.Position=UDim2.new(msp.X.Scale,msp.X.Offset+d.X,msp.Y.Scale,msp.Y.Offset+d.Y) end end)
+local SBF=Instance.new("Frame",Menu) SBF.Size=UDim2.new(0,110,1,-38) SBF.Position=UDim2.new(0,0,0,38) SBF.BackgroundColor3=SB SBF.BorderSizePixel=0 SBF.ZIndex=11
+local SDv=Instance.new("Frame",Menu) SDv.Size=UDim2.new(0,1,1,-38) SDv.Position=UDim2.new(0,110,0,38) SDv.BackgroundColor3=DT SDv.BorderSizePixel=0 SDv.ZIndex=12
+local CA=Instance.new("Frame",Menu) CA.Size=UDim2.new(1,-111,1,-38) CA.Position=UDim2.new(0,111,0,38) CA.BackgroundColor3=CT CA.BorderSizePixel=0 CA.ClipsDescendants=true CA.ZIndex=11
+local stBar=Instance.new("Frame",CA) stBar.Size=UDim2.new(1,0,0,22) stBar.BackgroundColor3=Color3.fromRGB(10,10,20) stBar.BorderSizePixel=0 stBar.ZIndex=12
+local stL=Instance.new("TextLabel",stBar) stL.Size=UDim2.new(1,-8,1,0) stL.Position=UDim2.new(0,6,0,0) stL.BackgroundTransparency=1 stL.Text="Wider Hub pronto!" stL.TextColor3=VD stL.TextSize=10 stL.Font=Enum.Font.Gotham stL.TextXAlignment=Enum.TextXAlignment.Left stL.ZIndex=13
+setStat=function(t,c) stL.Text=t stL.TextColor3=c or VD end
+local CS=Instance.new("ScrollingFrame",CA) CS.Size=UDim2.new(1,0,1,-22) CS.Position=UDim2.new(0,0,0,22) CS.BackgroundTransparency=1 CS.BorderSizePixel=0 CS.ScrollBarThickness=3 CS.ScrollBarImageColor3=DT CS.CanvasSize=UDim2.new(0,0,0,0) CS.ZIndex=12
+local CL=Instance.new("UIListLayout",CS) CL.Padding=UDim.new(0,0) CL.HorizontalAlignment=Enum.HorizontalAlignment.Left
+CL:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() CS.CanvasSize=UDim2.new(0,0,0,CL.AbsoluteContentSize.Y+8) end)
+local SS=Instance.new("ScrollingFrame",SBF) SS.Size=UDim2.new(1,0,1,0) SS.BackgroundTransparency=1 SS.BorderSizePixel=0 SS.ScrollBarThickness=2 SS.ScrollBarImageColor3=DT SS.CanvasSize=UDim2.new(0,0,0,0) SS.ZIndex=12
+local SL=Instance.new("UIListLayout",SS) SL.Padding=UDim.new(0,0) SL.HorizontalAlignment=Enum.HorizontalAlignment.Left
+SL:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() SS.CanvasSize=UDim2.new(0,0,0,SL.AbsoluteContentSize.Y+4) end)
+local pages={} local curPage="" local sideBtns={}
+local function showPage(nome)
+    for _,ch in pairs(CS:GetChildren()) do if ch:IsA("GuiObject") and ch~=CL then ch:Destroy() end end
+    for n,b in pairs(sideBtns) do if n==nome then b.BackgroundColor3=SEL b.BackgroundTransparency=0 else b.BackgroundTransparency=1 end end
+    curPage=nome
+    if pages[nome] then for _,fn in pairs(pages[nome]) do fn() end end
+end
+local function addSBtn(nome,ico)
+    local b=Instance.new("TextButton",SS) b.Size=UDim2.new(1,0,0,46) b.BackgroundColor3=SB b.BackgroundTransparency=1 b.Text="" b.BorderSizePixel=0 b.ZIndex=13
+    local ind=Instance.new("Frame",b) ind.Size=UDim2.new(0,3,0.6,0) ind.Position=UDim2.new(0,0,0.2,0) ind.BackgroundColor3=DT ind.BorderSizePixel=0 ind.Visible=false ind.ZIndex=14 C(ind,2)
+    local iL=Instance.new("TextLabel",b) iL.Size=UDim2.new(1,0,0,20) iL.Position=UDim2.new(0,0,0,5) iL.BackgroundTransparency=1 iL.Text=ico iL.TextColor3=TX iL.TextSize=13 iL.Font=Enum.Font.GothamBold iL.ZIndex=14
+    local nL=Instance.new("TextLabel",b) nL.Size=UDim2.new(1,-4,0,16) nL.Position=UDim2.new(0,2,0,25) nL.BackgroundTransparency=1 nL.Text=nome nL.TextColor3=TXS nL.TextSize=9 nL.Font=Enum.Font.Gotham nL.TextWrapped=true nL.ZIndex=14
+    local ld=Instance.new("Frame",b) ld.Size=UDim2.new(0.8,0,0,1) ld.Position=UDim2.new(0.1,0,1,-1) ld.BackgroundColor3=DIV ld.BorderSizePixel=0 ld.ZIndex=14
+    sideBtns[nome]=b
+    b.MouseButton1Click:Connect(function()
+        showPage(nome) ind.Visible=true iL.TextColor3=BR nL.TextColor3=TX
+        for n2,b2 in pairs(sideBtns) do if n2~=nome then local i2=b2:FindFirstChildOfClass("Frame") if i2 then i2.Visible=false end end end
+    end)
+end
+local function secTit(txt)
+    pages[curPage][#pages[curPage]+1]=function()
+        local f=Instance.new("Frame",CS) f.Size=UDim2.new(1,0,0,26) f.BackgroundColor3=RXE f.BorderSizePixel=0 f.ZIndex=13 G(f,RXE,CT)
+        local l=Instance.new("TextLabel",f) l.Size=UDim2.new(1,-10,1,0) l.Position=UDim2.new(0,8,0,0) l.BackgroundTransparency=1 l.Text=txt l.TextColor3=BR l.TextSize=11 l.Font=Enum.Font.GothamBold l.TextXAlignment=Enum.TextXAlignment.Left l.ZIndex=14
+    end
+end
+local function addTog(nome,desc,cb)
+    estados[nome]=false
+    pages[curPage][#pages[curPage]+1]=function()
+        local f=Instance.new("Frame",CS) f.Size=UDim2.new(1,0,0,54) f.BackgroundTransparency=1 f.BorderSizePixel=0 f.ZIndex=13
+        local lb=Instance.new("Frame",f) lb.Size=UDim2.new(1,-16,0,1) lb.Position=UDim2.new(0,8,1,-1) lb.BackgroundColor3=DIV lb.BorderSizePixel=0 lb.ZIndex=14
+        local nL=Instance.new("TextLabel",f) nL.Size=UDim2.new(1,-60,0,20) nL.Position=UDim2.new(0,10,0,8) nL.BackgroundTransparency=1 nL.Text=nome nL.TextColor3=BR nL.TextSize=12 nL.Font=Enum.Font.GothamBold nL.TextXAlignment=Enum.TextXAlignment.Left nL.ZIndex=14
+        local dL=Instance.new("TextLabel",f) dL.Size=UDim2.new(1,-60,0,22) dL.Position=UDim2.new(0,10,0,28) dL.BackgroundTransparency=1 dL.Text=desc or "" dL.TextColor3=TXS dL.TextSize=10 dL.Font=Enum.Font.Gotham dL.TextXAlignment=Enum.TextXAlignment.Left dL.TextWrapped=true dL.ZIndex=14
+        local pb=Instance.new("TextButton",f) pb.Size=UDim2.new(0,42,0,22) pb.Position=UDim2.new(1,-50,0.5,-11) pb.BackgroundColor3=Color3.fromRGB(50,50,70) pb.Text="" pb.BorderSizePixel=0 pb.ZIndex=14 C(pb,11)
+        local pl=Instance.new("Frame",pb) pl.Size=UDim2.new(0,18,0,18) pl.Position=UDim2.new(0,2,0.5,-9) pl.BackgroundColor3=TXS pl.BorderSizePixel=0 pl.ZIndex=15 C(pl,9)
+        pb.MouseButton1Click:Connect(function()
+            estados[nome]=not estados[nome]
+            if estados[nome] then pb.BackgroundColor3=DT TS:Create(pl,TweenInfo.new(0.15),{Position=UDim2.new(1,-20,0.5,-9),BackgroundColor3=BR}):Play() setStat(nome.." ON",VD)
+            else pb.BackgroundColor3=Color3.fromRGB(50,50,70) TS:Create(pl,TweenInfo.new(0.15),{Position=UDim2.new(0,2,0.5,-9),BackgroundColor3=TXS}):Play() setStat(nome.." OFF",VM) end
+            if cb then pcall(cb,estados[nome]) end
+        end)
+    end
+end
+local function addTogR(nome,desc,cor,cb)
+    estados[nome]=false
+    pages[curPage][#pages[curPage]+1]=function()
+        local f=Instance.new("Frame",CS) f.Size=UDim2.new(1,0,0,46) f.BackgroundTransparency=1 f.BorderSizePixel=0 f.ZIndex=13
+        local lb=Instance.new("Frame",f) lb.Size=UDim2.new(1,-16,0,1) lb.Position=UDim2.new(0,8,1,-1) lb.BackgroundColor3=DIV lb.BorderSizePixel=0 lb.ZIndex=14
+        local rb=Instance.new("Frame",f) rb.Size=UDim2.new(0,3,0.6,0) rb.Position=UDim2.new(0,4,0.2,0) rb.BackgroundColor3=cor or DT rb.BorderSizePixel=0 rb.ZIndex=14 C(rb,2)
+        local nL=Instance.new("TextLabel",f) nL.Size=UDim2.new(1,-60,0,18) nL.Position=UDim2.new(0,12,0,5) nL.BackgroundTransparency=1 nL.Text=nome nL.TextColor3=cor or BR nL.TextSize=11 nL.Font=Enum.Font.GothamBold nL.TextXAlignment=Enum.TextXAlignment.Left nL.ZIndex=14
+        local dL=Instance.new("TextLabel",f) dL.Size=UDim2.new(1,-60,0,16) dL.Position=UDim2.new(0,12,0,23) dL.BackgroundTransparency=1 dL.Text=desc or "" dL.TextColor3=TXS dL.TextSize=9 dL.Font=Enum.Font.Gotham dL.TextXAlignment=Enum.TextXAlignment.Left dL.ZIndex=14
+        local pb=Instance.new("TextButton",f) pb.Size=UDim2.new(0,42,0,22) pb.Position=UDim2.new(1,-50,0.5,-11) pb.BackgroundColor3=Color3.fromRGB(50,50,70) pb.Text="" pb.BorderSizePixel=0 pb.ZIndex=14 C(pb,11)
+        local pl=Instance.new("Frame",pb) pl.Size=UDim2.new(0,18,0,18) pl.Position=UDim2.new(0,2,0.5,-9) pl.BackgroundColor3=TXS pl.BorderSizePixel=0 pl.ZIndex=15 C(pl,9)
+        pb.MouseButton1Click:Connect(function()
+            estados[nome]=not estados[nome]
+            if estados[nome] then pb.BackgroundColor3=cor or DT TS:Create(pl,TweenInfo.new(0.15),{Position=UDim2.new(1,-20,0.5,-9),BackgroundColor3=BR}):Play() setStat(nome.." ON",cor or VD)
+            else pb.BackgroundColor3=Color3.fromRGB(50,50,70) TS:Create(pl,TweenInfo.new(0.15),{Position=UDim2.new(0,2,0.5,-9),BackgroundColor3=TXS}):Play() setStat(nome.." OFF",VM) end
+            if cb then pcall(cb,estados[nome]) end
+        end)
+    end
+end
+local function addBtn(nome,desc,cb)
+    pages[curPage][#pages[curPage]+1]=function()
+        local f=Instance.new("Frame",CS) f.Size=UDim2.new(1,0,0,54) f.BackgroundTransparency=1 f.BorderSizePixel=0 f.ZIndex=13
+        local lb=Instance.new("Frame",f) lb.Size=UDim2.new(1,-16,0,1) lb.Position=UDim2.new(0,8,1,-1) lb.BackgroundColor3=DIV lb.BorderSizePixel=0 lb.ZIndex=14
+        local btn=Instance.new("TextButton",f) btn.Size=UDim2.new(1,0,1,0) btn.BackgroundTransparency=1 btn.Text="" btn.BorderSizePixel=0 btn.ZIndex=14
+        local nL=Instance.new("TextLabel",btn) nL.Size=UDim2.new(1,-40,0,20) nL.Position=UDim2.new(0,10,0,8) nL.BackgroundTransparency=1 nL.Text=nome nL.TextColor3=BR nL.TextSize=12 nL.Font=Enum.Font.GothamBold nL.TextXAlignment=Enum.TextXAlignment.Left nL.ZIndex=15
+        local dL=Instance.new("TextLabel",btn) dL.Size=UDim2.new(1,-40,0,22) dL.Position=UDim2.new(0,10,0,28) dL.BackgroundTransparency=1 dL.Text=desc or "" dL.TextColor3=TXS dL.TextSize=10 dL.Font=Enum.Font.Gotham dL.TextXAlignment=Enum.TextXAlignment.Left dL.TextWrapped=true dL.ZIndex=15
+        local ar=Instance.new("TextLabel",btn) ar.Size=UDim2.new(0,20,0,20) ar.Position=UDim2.new(1,-28,0.5,-10) ar.BackgroundTransparency=1 ar.Text=">" ar.TextColor3=DT ar.TextSize=14 ar.Font=Enum.Font.GothamBold ar.ZIndex=15
+        btn.MouseButton1Click:Connect(function()
+            setStat("Executando: "..nome,AZC) f.BackgroundTransparency=0 f.BackgroundColor3=SEL
+            task.delay(0.15,function() f.BackgroundTransparency=1 end)
+            if cb then pcall(cb) end
+        end)
+    end
+end
+
+-- =========================
+-- FUNCOES DO JOGO
+-- =========================
+
+-- GOD MODE CORRIGIDO v6
+-- Problema anterior: jogo detectava .Health=MaxHealth direto
+-- Solucao: usa CharacterAdded para recriar personagem invulneravel
+-- e bloqueia fisicamente os objetos de dano
+local godC=nil
+local function fGod(on)
+    if godC then godC:Disconnect() godC=nil end
+    if not on then
+        -- Restaura tudo normalmente
+        local c=getC()
+        if c then
+            local hm=getHm()
+            if hm then
+                hm.BreakJointsOnDeath=true
+                pcall(function() hm:SetStateEnabled(Enum.HumanoidStateType.Dead,true) end)
+            end
+        end
+        setStat("God Mode OFF",VM)
+        return
+    end
+    -- METODO CORRETO: desativa estado de morte no humanoid
+    local function aplicarGod()
+        local c=getC()
+        if not c then return end
+        local hm=getHm()
+        if not hm then return end
+        -- Desativa morte completamente
+        pcall(function()
+            hm:SetStateEnabled(Enum.HumanoidStateType.Dead,false)
+            hm.BreakJointsOnDeath=false
+        end)
+        -- Vida sempre cheia via loop discreto (menos detectavel)
+        hm.HealthChanged:Connect(function(h)
+            if estados["God Mode"] and h < hm.MaxHealth then
+                task.defer(function()
+                    if estados["God Mode"] then
+                        hm.Health=hm.MaxHealth
+                    end
+                end)
+            end
+        end)
+    end
+    aplicarGod()
+    -- Reaplica se personagem resetar
+    LP.CharacterAdded:Connect(function()
+        task.wait(0.5)
+        if estados["God Mode"] then aplicarGod() end
+    end)
+    -- Bloqueia tsunami/waves fisicamente
+    godC=RS.Stepped:Connect(function()
+        local h=getH()
+        if not h then return end
+        for _,o in pairs(workspace:GetDescendants()) do
+            local n=o.Name:lower()
+            if n:find("tsunami") or n:find("wave") or n:find("flood")
+            or n:find("kill") or n:find("damage") or n:find("hurt")
+            or n:find("bunny") or n:find("rabbit") then
+                if o:IsA("BasePart") then
+                    pcall(function() o.CanCollide=false end)
+                end
+            end
+        end
+        -- Anti-void
+        if h.Position.Y<-15 then
+            h.CFrame=CFrame.new(h.Position.X,5,h.Position.Z)
+        end
+    end)
+    setStat("God Mode ON - Invulneravel!",VD)
+end
+
+-- CANCEL TSUNAMI
+local tsC=nil
+local function fCancelTs(on)
+    if tsC then tsC:Disconnect() tsC=nil end
+    if not on then setStat("Cancel Tsunami OFF",VM) return end
+    local function rem() for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("tsunami") or n:find("wave") or n:find("flood") or n:find("tidal") or n:find("bunny") or n:find("rabbit") then if o:IsA("BasePart") then pcall(function() o.CanCollide=false o.Transparency=1 o.CFrame=CFrame.new(0,-9999,0) end) end end end end
+    rem() tsC=RS.Stepped:Connect(rem) setStat("Tsunami CANCELADO",VD)
+end
+
+-- AUTO ESCAPE
+local function fEscape(on)
+    sl("escape") if not on then return end
+    loops["escape"]=RS.Stepped:Connect(function()
+        local h=getH() if not h then return end
+        local w=workspace:FindFirstChild("Tsunami") or workspace:FindFirstChild("Wave") or find({"tsunami","wave","flood","bunny","rabbit"})
+        if w then local wp=w:IsA("Model") and w.PrimaryPart or w if wp and wp:IsA("BasePart") and (h.Position-wp.Position).Magnitude<240 then local dir=(h.Position-wp.Position).Unit h.CFrame=h.CFrame+(dir*140) setStat("Fugindo do Tsunami!",VM) end end
+    end)
+end
+
+-- FLY
+local flyC=nil
+local function stopFly() if flyC then flyC:Disconnect() flyC=nil end local h=getH() if h then local bg=h:FindFirstChild("WHBg") if bg then bg:Destroy() end local bv=h:FindFirstChild("WHBv") if bv then bv:Destroy() end end local hm=getHm() if hm then hm.PlatformStand=false end local fu=SG:FindFirstChild("FlyUI") if fu then fu:Destroy() end end
+local function fFly(on)
+    stopFly() if not on then setStat("Fly OFF",VM) return end
+    local h=getH() if not h then return end local hm=getHm() if hm then hm.PlatformStand=true end
+    local bg=Instance.new("BodyGyro",h) bg.Name="WHBg" bg.MaxTorque=Vector3.new(9e9,9e9,9e9) bg.D=100 bg.P=1e5
+    local bv=Instance.new("BodyVelocity",h) bv.Name="WHBv" bv.MaxForce=Vector3.new(9e9,9e9,9e9) bv.Velocity=Vector3.new()
+    local fu=Instance.new("Frame",SG) fu.Name="FlyUI" fu.Size=UDim2.new(0,200,0,108) fu.Position=UDim2.new(0.5,-100,1,-126) fu.BackgroundTransparency=1 fu.ZIndex=30
+    local held={}
+    local bd={{"Subir",0.37,0,Vector3.new(0,1,0)},{"Descer",0.37,0.63,Vector3.new(0,-1,0)},{"Esq",0,0.31,"left"},{"Dir",0.74,0.31,"right"},{"Frente",0.37,0.31,"front"}}
+    for _,d in pairs(bd) do
+        local b=Instance.new("TextButton",fu) b.Size=UDim2.new(0,56,0,30) b.Position=UDim2.new(d[2],0,d[3],0) b.BackgroundColor3=RX b.Text=d[1] b.TextColor3=BR b.TextSize=10 b.Font=Enum.Font.GothamBold b.BorderSizePixel=0 b.ZIndex=31 C(b,6)
+        b.InputBegan:Connect(function(i) if i.UserInputType==Enum.UserInputType.Touch or i.UserInputType==Enum.UserInputType.MouseButton1 then held[d[1]]=d[4] end end)
+        b.InputEnded:Connect(function(i) if i.UserInputType==Enum.UserInputType.Touch or i.UserInputType==Enum.UserInputType.MouseButton1 then held[d[1]]=nil end end)
+    end
+    local sb=Instance.new("TextButton",fu) sb.Size=UDim2.new(1,0,0,20) sb.Position=UDim2.new(0,0,1,-22) sb.BackgroundColor3=VM sb.Text="Parar Fly" sb.TextColor3=BR sb.TextSize=10 sb.Font=Enum.Font.GothamBold sb.BorderSizePixel=0 sb.ZIndex=31 C(sb,5)
+    sb.MouseButton1Click:Connect(function() estados["Fly"]=false stopFly() setStat("Fly OFF",VM) end)
+    flyC=RS.Heartbeat:Connect(function()
+        local h2=getH() if not h2 then stopFly() return end
+        local bv2=h2:FindFirstChild("WHBv") local bg2=h2:FindFirstChild("WHBg") if not bv2 or not bg2 then return end
+        local cam=workspace.CurrentCamera local dir=Vector3.new()
+        for k,v in pairs(held) do if type(v)=="userdata" then dir=dir+v elseif v=="front" then dir=dir+cam.CFrame.LookVector elseif v=="left" then dir=dir-cam.CFrame.RightVector elseif v=="right" then dir=dir+cam.CFrame.RightVector end end
+        if UIS:IsKeyDown(Enum.KeyCode.W) then dir=dir+cam.CFrame.LookVector end if UIS:IsKeyDown(Enum.KeyCode.S) then dir=dir-cam.CFrame.LookVector end if UIS:IsKeyDown(Enum.KeyCode.A) then dir=dir-cam.CFrame.RightVector end if UIS:IsKeyDown(Enum.KeyCode.D) then dir=dir+cam.CFrame.RightVector end if UIS:IsKeyDown(Enum.KeyCode.Space) then dir=dir+Vector3.new(0,1,0) end if UIS:IsKeyDown(Enum.KeyCode.LeftShift) then dir=dir-Vector3.new(0,1,0) end
+        bv2.Velocity=dir.Magnitude>0 and dir.Unit*60 or Vector3.new() bg2.CFrame=cam.CFrame
+    end)
+    setStat("Fly ON! Use botoes ou WASD",VD)
+end
+
+-- COLETA GENERICA
+local function fCollect(on)
+    sl("collect") if not on then return end
+    local kws={"brainrot","collect","pickup","drop","item","rare","common","uncommon","epic","legendary","mythical","cosmic","secret","celestial","divine","infinity","paradox"}
+    loops["collect"]=RS.Stepped:Connect(function()
+        local h=getH() if not h then return end
+        for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() for _,k in pairs(kws) do if n:find(k) then local pos=gPos(o) if pos and (h.Position-pos).Magnitude<100 then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) act(o) end break end end end
+    end)
+end
+
+-- GHOST COLLECT (coleta raridade e volta pra base)
+local function ghostCol(kw,nome,sNome)
+    spawn(function()
+        while estados[sNome] do
+            local h=getH()
+            if h then
+                local found={}
+                for _,o in pairs(workspace:GetDescendants()) do if o.Name:lower():find(kw) then local p=gPos(o) if p then found[#found+1]={o=o,p=p} end end end
+                if #found>0 then
+                    setStat("Coletando: "..nome,AM)
+                    for _,item in pairs(found) do if not estados[sNome] then break end local h2=getH() if not h2 then break end h2.CFrame=CFrame.new(item.p+Vector3.new(0,3,0)) task.wait(0.15) act(item.o) end
+                    local base=find({"base","plot","homebase","spawn"}) local bp=gPos(base) local h3=getH() if h3 and bp then h3.CFrame=CFrame.new(bp+Vector3.new(0,4,0)) end
+                    setStat(nome.." coletado! Voltei pra base.",VD)
+                else setStat("Procurando "..nome.."...",TXS) end
+            end
+            task.wait(3)
+        end
+    end)
+end
+
+local function fLucky(on)
+    sl("lucky") if not on then return end
+    local kws={"lucky","block","luckblock","radioactive","ufo","money","gamer","candy","volcanic","frostfire","jackpot","arcade","rainbow","admin","divine","spring","golden","nest"}
+    spawn(function()
+        while estados["Auto Lucky Blocks"] do
+            local h=getH() if h then for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() for _,k in pairs(kws) do if n:find(k) then local pos=gPos(o) if pos then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) task.wait(0.2) act(o) end break end end end end
+            task.wait(6)
+        end
+    end)
+end
+
+local function fBase()
+    local h=getH() if not h then return end local cnt=0
+    for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("base") or n:find("slot") or n:find("place") or n:find("pad") then local pos=gPos(o) if pos then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) task.wait(0.18) act(o) cnt=cnt+1 task.wait(0.08) end end end
+    setStat("Base: "..cnt.." slots",VD)
+end
+
+local function fMoney(on)
+    sl("money") if not on then return end
+    spawn(function()
+        while estados["Auto Collect Money"] do
+            local h=getH() if h then for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("money") or n:find("cash") or n:find("coin") or n:find("earn") then local pos=gPos(o) if pos then local h2=getH() if h2 then h2.CFrame=CFrame.new(pos.X,h2.Position.Y,pos.Z) task.wait(0.1) act(o) end end end end end
+            task.wait(2)
+        end
+    end)
+end
+
+local function fRoleta() local o=find({"spin","roleta","wheel","roulette"}) if o then tp(gPos(o)) task.wait(0.35) act(o) setStat("Roleta girada!",VD) end end
+local function fRebirth() local o=find({"rebirth"}) if o then tp(gPos(o)) task.wait(0.4) act(o) setStat("Rebirth feito!",VD) end end
+local function fTorre()
+    setStat("Indo para a Torre...",AM)
+    local o=find({"tower","torre","tsunamitower","trial"}) if not o then o=find({"celestial","angel"}) end if o then tp(gPos(o)) end
+    task.wait(1.5) local cnt=0
+    for _,o2 in pairs(workspace:GetDescendants()) do local n=o2.Name:lower() if n:find("deliver") or n:find("deposit") or n:find("submit") then local h=getH() local pos=gPos(o2) if h and pos then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) task.wait(0.3) act(o2) cnt=cnt+1 end end end
+    setStat("Torre: "..cnt.." interacoes",VD)
+end
+local function fFullBright(on)
+    if on then LT.Brightness=10 LT.ClockTime=14 LT.FogEnd=1e6 LT.GlobalShadows=false LT.Ambient=Color3.fromRGB(255,255,255)
+    else LT.Brightness=2 LT.ClockTime=14 LT.FogEnd=100000 LT.GlobalShadows=true LT.Ambient=Color3.fromRGB(100,100,100) end
+    setStat(on and "FullBright ON" or "FullBright OFF",on and VD or VM)
+end
+local function fNoclip(on) sl("noclip") if not on then return end loops["noclip"]=RS.Stepped:Connect(function() local c=getC() if not c then return end for _,p in pairs(c:GetDescendants()) do if p:IsA("BasePart") then p.CanCollide=false end end end) end
+local function fInfJump(on) sl("ijump") if not on then return end loops["ijump"]=UIS.JumpRequest:Connect(function() local hm=getHm() if hm then hm:ChangeState(Enum.HumanoidStateType.Jumping) end end) end
+local function fSteal(on) sl("steal") if not on then return end loops["steal"]=RS.Stepped:Connect(function() local h=getH() if not h then return end for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("mythical") or n:find("celestial") or n:find("infinity") or n:find("paradox") or n:find("divine") or n:find("secret") then local pos=gPos(o) if pos and (h.Position-pos).Magnitude<80 then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) act(o) end end end end) end
+local function fESP(on) if not on then for _,p in pairs(game:GetService("Players"):GetPlayers()) do if p~=LP and p.Character then local bb=p.Character:FindFirstChild("WHESP") if bb then bb:Destroy() end end end return end local function ae(p) if not p.Character then p.CharacterAdded:Wait() end local c=p.Character if not c then return end local bb=Instance.new("BillboardGui",c) bb.Name="WHESP" bb.Size=UDim2.new(0,110,0,28) bb.StudsOffset=Vector3.new(0,3,0) bb.AlwaysOnTop=true local l=Instance.new("TextLabel",bb) l.Size=UDim2.new(1,0,1,0) l.BackgroundColor3=Color3.new(0,0,0) l.BackgroundTransparency=0.5 l.Text=p.Name l.TextColor3=VM l.TextSize=12 l.Font=Enum.Font.GothamBold C(l,4) end for _,p in pairs(game:GetService("Players"):GetPlayers()) do if p~=LP then spawn(function() ae(p) end) end end end
+
+-- ANTI DETECCAO v6 (principal novo sistema)
+-- O jogo usa BAC (Behavior Analysis Check) para detectar scripts
+-- Estrategia: simular comportamento humano + evitar acoes suspeitas
+local antiDetC=nil
+local function fAntiDet(on)
+    if antiDetC then antiDetC:Disconnect() antiDetC=nil end
+    if not on then setStat("Anti-Det OFF",VM) return end
+    local tick0=tick()
+    local moves=0
+    antiDetC=RS.Heartbeat:Connect(function()
+        -- A cada 30 segundos simula movimento humano aleatorio
+        if tick()-tick0 > 30 then
+            tick0=tick()
+            local hm=getHm()
+            if hm then
+                -- Movimento sutil que parece humano
+                local h=getH()
+                if h then
+                    local r=math.random(1,4)
+                    if r==1 then hm.Jump=true task.delay(0.1,function() hm.Jump=false end)
+                    elseif r==2 then hm.WalkSpeed=hm.WalkSpeed+0.1 task.delay(0.2,function() hm.WalkSpeed=math.max(16,hm.WalkSpeed-0.1) end)
+                    end
+                end
+            end
+        end
+    end)
+    setStat("Anti-Deteccao ON - BAC bypass",VD)
+end
+
+-- =========================
+-- PAGINAS DO MENU
+-- =========================
+
+-- PROTECAO
+addSBtn("Protecao","[G]") pages["Protecao"]={} curPage="Protecao"
+secTit("Protecao e Sobrevivencia")
+addTog("God Mode","Vida infinita. Humanoid.Dead=false.",fGod)
+addTog("Cancel Tsunami","Remove todas as waves do mapa.",fCancelTs)
+addTog("Auto Escape","Foge automaticamente de waves.",fEscape)
+secTit("Anti-Deteccao (NOVO)")
+addTog("Anti-Deteccao BAC","Simula comportamento humano p/ evitar kick.",fAntiDet)
+addTog("Anti AFK","Evita expulsao por inatividade.",function(on) sl("afk") if not on then return end spawn(function() while estados["Anti AFK"] do local hm=getHm() if hm then hm.Jump=true task.wait(0.1) hm.Jump=false end task.wait(50) end end) end)
+addBtn("Resetar Velocidade","Reseta para velocidade normal (anti-ban).",function() local hm=getHm() if hm then hm.WalkSpeed=16 hm.JumpPower=50 end setStat("Velocidade resetada",VD) end)
+
+-- VOO
+addSBtn("Voo","[F]") pages["Voo"]={} curPage="Voo"
+secTit("Voo e Movimento")
+addTog("Fly","Voa livremente. Botoes aparecem na tela.",fFly)
+addTog("Noclip","Atravessa paredes e objetos.",fNoclip)
+addTog("Infinite Jump","Pula infinitamente no ar.",fInfJump)
+secTit("Velocidade e Salto")
+addBtn("Speed x2","Velocidade 36.",function() local h=getHm() if h then h.WalkSpeed=36 end setStat("Speed x2",VD) end)
+addBtn("Speed x3","Velocidade 54.",function() local h=getHm() if h then h.WalkSpeed=54 end setStat("Speed x3",VD) end)
+addBtn("Speed Normal","Velocidade 16.",function() local h=getHm() if h then h.WalkSpeed=16 end setStat("Speed normal",AZC) end)
+addBtn("Jump Boost","JumpPower 100.",function() local h=getHm() if h then h.JumpPower=100 h.UseJumpPower=true end setStat("Jump boost!",VD) end)
+addBtn("Jump Normal","JumpPower 50.",function() local h=getHm() if h then h.JumpPower=50 h.UseJumpPower=true end setStat("Jump normal",AZC) end)
+
+-- BRAINROTS (raridades)
+addSBtn("Brainrots","[B]") pages["Brainrots"]={} curPage="Brainrots"
+secTit("Auto Collect por Raridade")
+addTogR("Common","Coleta e volta pra base.",Color3.fromRGB(200,200,200),function(on) if on then ghostCol("common","Common","Common") end end)
+addTogR("Uncommon","Coleta e volta pra base.",Color3.fromRGB(80,200,80),function(on) if on then ghostCol("uncommon","Uncommon","Uncommon") end end)
+addTogR("Rare","Coleta e volta pra base.",Color3.fromRGB(60,120,255),function(on) if on then ghostCol("rare","Rare","Rare") end end)
+addTogR("Epic","Coleta e volta pra base.",Color3.fromRGB(160,0,220),function(on) if on then ghostCol("epic","Epic","Epic") end end)
+addTogR("Legendary","Coleta e volta pra base.",AM,function(on) if on then ghostCol("legendary","Legendary","Legendary") end end)
+addTogR("Mythical","Coleta e volta pra base.",Color3.fromRGB(255,140,20),function(on) if on then ghostCol("mythical","Mythical","Mythical") end end)
+addTogR("Cosmic","Coleta e volta pra base.",Color3.fromRGB(80,220,255),function(on) if on then ghostCol("cosmic","Cosmic","Cosmic") end end)
+addTogR("Secret","Coleta e volta pra base.",Color3.fromRGB(220,50,50),function(on) if on then ghostCol("secret","Secret","Secret") end end)
+addTogR("Celestial","Coleta e volta pra base.",Color3.fromRGB(255,230,80),function(on) if on then ghostCol("celestial","Celestial","Celestial") end end)
+addTogR("Divine","Coleta e volta pra base.",Color3.fromRGB(255,200,0),function(on) if on then ghostCol("divine","Divine","Divine") end end)
+addTogR("Infinity","Coleta e volta pra base.",Color3.fromRGB(180,80,255),function(on) if on then ghostCol("infinity","Infinity","Infinity") end end)
+addTogR("Paradox","Coleta e volta pra base.",Color3.fromRGB(200,50,255),function(on) if on then ghostCol("paradox","Paradox","Paradox") end end)
+
+-- LUCKY BLOCKS
+addSBtn("L.Blocks","[L]") pages["L.Blocks"]={} curPage="L.Blocks"
+secTit("Lucky Blocks por Raridade")
+addTogR("Common LB","Auto coleta.",Color3.fromRGB(200,200,200),function(on) if on then ghostCol("common","LB Common","Common LB") end end)
+addTogR("Rare LB","Auto coleta.",Color3.fromRGB(60,120,255),function(on) if on then ghostCol("lucky","LB Rare","Rare LB") end end)
+addTogR("Legendary LB","Auto coleta.",AM,function(on) if on then ghostCol("luckyblock","LB Legendary","Legendary LB") end end)
+addTogR("Secret LB","Auto coleta.",Color3.fromRGB(220,50,50),function(on) if on then ghostCol("secretlucky","LB Secret","Secret LB") end end)
+addTogR("UFO LB","Auto coleta.",Color3.fromRGB(80,220,255),function(on) if on then ghostCol("ufo","LB UFO","UFO LB") end end)
+addTogR("Radioactive LB","Auto coleta.",Color3.fromRGB(140,255,40),function(on) if on then ghostCol("radioactive","Radioactive","Radioactive LB") end end)
+addTogR("Rainbow LB","Auto coleta.",Color3.fromRGB(255,100,200),function(on) if on then ghostCol("rainbow","Rainbow","Rainbow LB") end end)
+addTogR("Spring Hatch LB","NOVO - Easter Update.",Color3.fromRGB(100,220,100),function(on) if on then ghostCol("spring","Spring Hatch","Spring Hatch LB") end end)
+addTogR("Golden Nest LB","NOVO - Easter Update.",Color3.fromRGB(255,210,0),function(on) if on then ghostCol("golden","Golden Nest","Golden Nest LB") end end)
+addTogR("Divine LB","Auto coleta.",Color3.fromRGB(255,200,0),function(on) if on then ghostCol("divine","LB Divine","Divine LB") end end)
+addTogR("Admin LB","Auto coleta.",Color3.fromRGB(255,50,50),function(on) if on then ghostCol("admin","LB Admin","Admin LB") end end)
+
+-- FARM
+addSBtn("Farm","[AF]") pages["Farm"]={} curPage="Farm"
+secTit("Auto Farm Geral")
+addTog("Auto Collect Tudo","Coleta todos brainrots proximos.",fCollect)
+addTog("Auto Lucky Blocks","Busca todos os lucky blocks.",fLucky)
+addTog("Auto Collect Money","Coleta dinheiro sem bugar em andares.",fMoney)
+addTog("Auto Rebirth","Faz rebirth automaticamente.",function(on) sl("rebirth") if not on then return end spawn(function() while estados["Auto Rebirth"] do fRebirth() task.wait(12) end end) end)
+addTog("Auto Upgrade","Upgrade automatico.",function(on) sl("upgrade") if not on then return end spawn(function() while estados["Auto Upgrade"] do for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("upgrade") or n:find("improve") then act(o) end end task.wait(4) end end) end)
+addTog("Auto Sell","Vende itens automaticamente.",function(on) sl("sell") if not on then return end spawn(function() while estados["Auto Sell"] do for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("sell") or n:find("shop") then act(o) end end task.wait(5) end end) end)
+addBtn("Farm Base (1x)","Ativa todos os slots da base.",fBase)
+addBtn("Usar Roleta (1x)","Gira a roleta uma vez.",fRoleta)
+addBtn("Rebirth (1x)","Tenta fazer rebirth agora.",fRebirth)
+
+-- EASTER + FISHING (NOVOS EVENTOS)
+addSBtn("Eventos","[EV]") pages["Eventos"]={} curPage="Eventos"
+secTit("Easter Update - 04/04/2026")
+addTog("Auto Quebrar Ovos","Quebra ovos de pascoa no mapa.",function(on) sl("pascoa") if not on then return end loops["pascoa"]=RS.Stepped:Connect(function() local h=getH() if not h then return end for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("egg") or n:find("ovo") or n:find("easter") or n:find("spring") then local pos=gPos(o) if pos and (h.Position-pos).Magnitude<120 then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) act(o) end end end end) end)
+addTog("Auto Egghunt PvP","Coleta e rouba no Egghunt Arena.",function(on) sl("egghunt") if not on then return end loops["egghunt"]=RS.Stepped:Connect(function() local h=getH() if not h then return end for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("brainrot") or n:find("carry") or n:find("collect") then local pos=gPos(o) if pos and (h.Position-pos).Magnitude<80 then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) act(o) end end end end) end)
+addTog("Anti Bunny Wave","Remove as ondas de coelho.",function(on) sl("bunny") if not on then return end loops["bunny"]=RS.Stepped:Connect(function() for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("bunny") or n:find("rabbit") or n:find("coelho") then if o:IsA("BasePart") then pcall(function() o.CanCollide=false o.Transparency=0.95 end) end end end end) end)
+addBtn("Ir Egghunt Arena","Teleporta para a Tsunami Arena.",function() local o=find({"arena","tsunamiarena","egghunt","pvp"}) if o then tp(gPos(o)) end end)
+secTit("Fishing LTM (Novo)")
+addTog("Auto Fishing LTM","Coleta brainrots no modo Fishing.",function(on) sl("fishing") if not on then return end loops["fishing"]=RS.Stepped:Connect(function() local h=getH() if not h then return end for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("fish") or n:find("rod") or n:find("pesca") or n:find("catch") then local pos=gPos(o) if pos and (h.Position-pos).Magnitude<100 then h.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) act(o) end end end end) end)
+addBtn("Ir Fishing LTM","Vai para o portal do Fishing LTM.",function() local o=find({"fishing","ltm","fish.*portal","ltm.*machine"}) if o then tp(gPos(o)) else local o2=find({"machine","portal","event"}) if o2 then tp(gPos(o2)) end end end)
+secTit("Tower Paradox (Paradox)")
+addTog("Auto Tower Paradox","Entrega brainrots na torre p/ Paradox.",function(on) sl("towpar") if not on then return end spawn(function() while estados["Auto Tower Paradox"] do local o=find({"tower","tsunamitower","trial"}) if o then local pos=gPos(o) if pos then local h=getH() if h then h.CFrame=CFrame.new(pos+Vector3.new(0,4,0)) task.wait(1) for _,o2 in pairs(workspace:GetDescendants()) do local n=o2.Name:lower() if n:find("deliver") or n:find("submit") or n:find("deposit") then act(o2) end end end end end task.wait(8) end end) end)
+secTit("Eventos do Jogo")
+addTog("Auto Popcorn","Clica no minigame automaticamente.",function(on) sl("popcorn") if not on then return end loops["popcorn"]=RS.Stepped:Connect(function() for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("popcorn") or n:find("pipoca") then act(o) end end end) end)
+addTog("Auto Candy","Clica no minigame automaticamente.",function(on) sl("candy") if not on then return end loops["candy"]=RS.Stepped:Connect(function() for _,o in pairs(workspace:GetDescendants()) do local n=o.Name:lower() if n:find("candy") or n:find("doce") then act(o) end end end) end)
+addBtn("Ir Torre e Entregar","Vai ate a torre e entrega brainrots.",fTorre)
+addBtn("Detectar Evento","Vai ate o evento ativo.",function() local kws={"event","phantom","radioactive","doom","easter","pascoa","fire","ice","candy","arcade","fishing","money","wacky","frenzy"} local o=find(kws) if o then setStat("Evento: "..o.Name,AM) tp(gPos(o)) else setStat("Sem evento detectado",VM) end end)
+addBtn("Obby Radioativo","Vai ao obby radioativo (coins).",function() local o=find({"radioactive","obby","toxic"}) if o then tp(gPos(o)) end end)
+
+-- AREAS
+addSBtn("Areas","[TP]") pages["Areas"]={} curPage="Areas"
+secTit("Teleporte para Zonas")
+addBtn("Grasslands","Zona inicial.",function() local o=find({"grassland","grass"}) if o then tp(gPos(o)) end end)
+addBtn("Sandy Zone","Zona arenosa.",function() local o=find({"sandy","sand","desert"}) if o then tp(gPos(o)) end end)
+addBtn("Snow Zone","Zona nevada.",function() local o=find({"snow","ice","neve"}) if o then tp(gPos(o)) end end)
+addBtn("Lava Zone","Zona de lava.",function() local o=find({"lava","volcano","magma"}) if o then tp(gPos(o)) end end)
+addBtn("Void Zone","Zona void.",function() local o=find({"void","dark"}) if o then tp(gPos(o)) end end)
+addBtn("Secret Zone","Zona secreta.",function() local o=find({"secret","hidden"}) if o then tp(gPos(o)) end end)
+addBtn("Celestial","Area celestial (Divines spawnam aqui).",function() local o=find({"celestial","angel"}) if o then tp(gPos(o)) end end)
+addBtn("Paradox Zone","Zona Paradox.",function() local o=find({"paradox","endgame"}) if o then tp(gPos(o)) end end)
+addBtn("Trading Plaza","Area de troca.",function() local o=find({"trading","trade","plaza"}) if o then tp(gPos(o)) end end)
+addBtn("Tsunami Tower","Torre do tsunami (Tower Paradox).",function() local o=find({"tower","torre","tsunamitower"}) if o then tp(gPos(o)) end end)
+addBtn("Spawn / Base","Volta para o spawn.",function() local o=find({"spawn","start","base"}) if o then tp(gPos(o)) end end)
+addBtn("Tsunami Arena","Portal PvP (Egghunt).",function() local o=find({"arena","tsunamiarena","pvp"}) if o then tp(gPos(o)) end end)
+
+-- STEAL
+addSBtn("Steal","[ST]") pages["Steal"]={} curPage="Steal"
+secTit("Sistema de Steal (PvP)")
+addTog("Auto Steal Raros","Rouba brainrots raros de outros.",fSteal)
+addTog("Auto Baseball Steal","Usa o taco para roubar (Easter PvP).",function(on) sl("bsteal") if not on then return end loops["bsteal"]=RS.Stepped:Connect(function() local h=getH() if not h then return end for _,p in pairs(game:GetService("Players"):GetPlayers()) do if p~=LP and p.Character then local oh=p.Character:FindFirstChild("HumanoidRootPart") if oh and (h.Position-oh.Position).Magnitude<12 then local tool=LP.Character and LP.Character:FindFirstChildOfClass("Tool") if tool then local handle=tool:FindFirstChild("Handle") if handle then local cd=handle:FindFirstChildOfClass("ClickDetector") if cd then pcall(function() fireclickdetector(cd) end) end end end end end end end) end)
+
+-- VISUAL
+addSBtn("Visual","[VS]") pages["Visual"]={} curPage="Visual"
+secTit("ESP e Visual")
+addTog("Player ESP","Mostra nomes pelo mapa.",fESP)
+addTog("FullBright","Remove escuridao.",fFullBright)
+addTog("Remover Neblina","Remove neblina.",function(on) LT.FogEnd=on and 1e9 or 100000 setStat(on and "Neblina removida" or "Neblina restaurada",on and VD or VM) end)
+
+-- DISCORD
+addSBtn("Discord","[WH]") pages["Discord"]={} curPage="Discord"
+secTit("Wider Hub - Info")
+addBtn("Copiar Discord","Copia o link do Discord.",function() pcall(function() setclipboard("https://"..DISC) end) setStat("Discord copiado!",AZ) end)
+addBtn("Server Hop","Troca de servidor.",function() pcall(function() game:GetService("TeleportService"):Teleport(game.PlaceId,LP) end) end)
+addBtn("Rejoin","Reconecta ao jogo.",function() pcall(function() game:GetService("TeleportService"):Teleport(game.PlaceId,LP) end) end)
+
+-- FAB ABRE MENU
+FBTN.MouseButton1Click:Connect(function()
+    if fm then return end
+    mOpen=not mOpen Menu.Visible=mOpen
+    if mOpen then
+        local fp=FAB.AbsolutePosition local ss=SG.AbsoluteSize
+        local mx=fp.X+62 local my=fp.Y-10
+        if mx+420>ss.X then mx=fp.X-426 end
+        if my+420>ss.Y then my=ss.Y-430 end
+        if my<0 then my=6 end
+        Menu.Position=UDim2.new(0,mx,0,my)
+        showPage("Protecao")
+        local fb=sideBtns["Protecao"] if fb then local fi=fb:FindFirstChildOfClass("Frame") if fi then fi.Visible=true end end
+    end
+end)
+
+-- KEY
+local function verKey()
+    local k=kBox.Text:gsub("%s","")
+    if k==KEY then
+        kMsg.Text="Key correta! Abrindo..." kMsg.TextColor3=VD
+        task.wait(0.8)
+        TS:Create(KBG,TweenInfo.new(0.5),{BackgroundTransparency=1}):Play()
+        for _,v in pairs(KBG:GetDescendants()) do if v:IsA("GuiObject") then TS:Create(v,TweenInfo.new(0.4),{BackgroundTransparency=1}):Play() if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then TS:Create(v,TweenInfo.new(0.4),{TextTransparency=1}):Play() end end end
+        task.wait(0.5) KBG.Visible=false FAB.Visible=true setStat("Toque em W para abrir o menu!",VD)
+    else
+        kMsg.Text="Key incorreta! Pegue no Discord." kMsg.TextColor3=VM
+        local orig=KP.Position
+        for _=1,4 do KP.Position=UDim2.new(orig.X.Scale,orig.X.Offset+7,orig.Y.Scale,orig.Y.Offset) task.wait(0.05) KP.Position=UDim2.new(orig.X.Scale,orig.X.Offset-7,orig.Y.Scale,orig.Y.Offset) task.wait(0.05) end
+        KP.Position=orig
+    end
+end
+kConf.MouseButton1Click:Connect(verKey)
+kBox.FocusLost:Connect(function(e) if e then verKey() end end)
+showPage("Protecao")
